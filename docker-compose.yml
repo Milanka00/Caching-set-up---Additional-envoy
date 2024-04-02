@@ -1,0 +1,66 @@
+version: "3.8"
+
+services:
+  envoy_first:
+    build: ./envoy1
+    ports:
+      - "9095:9095"
+    networks:
+      - proxy_network
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: "500M"  # 500 MB
+
+  envoy_second:
+    build: ./envoy2
+    ports:
+      - "9096:9096"
+    networks:
+      - proxy_network
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: "500M"  # 500 MB
+
+  backend:
+    build: ./backend
+    ports:
+      - "8083:8083"
+    networks:
+      - proxy_network
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: "1G"  # 1 GB
+  
+
+
+  varnish_new:
+    build: ./varnish
+    ports:
+      - "8080:80"
+    networks:
+      - proxy_network
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "500M"  # 500 MB
+    environment:
+      ORG1_CACHE_MAX_SIZE: "3221225472"  # 3GB
+      ORG2_CACHE_MAX_SIZE: "1073741824"  # 1GB
+      DEFAULT_CACHE_MAX_SIZE: "1048576"   # 1MB
+    command: 
+       -s default=malloc,1M
+       -s org1=malloc,3G
+       -s org2=malloc,1G
+
+
+
+networks:
+  proxy_network:
+    driver: bridge

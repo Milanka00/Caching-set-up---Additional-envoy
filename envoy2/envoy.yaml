@@ -31,11 +31,6 @@ static_resources:
                               prefix: "/customurl/"
                             route:
                               cluster_header: "x-cluster-header"
-                              rate_limits:
-                                - actions:
-                                    - request_headers:
-                                        header_name: "foo"
-                                        descriptor_key: "foo"
                               prefix_rewrite: "/publiccache/"
 
 
@@ -43,11 +38,7 @@ static_resources:
                               prefix: "/"
                             route:
                               cluster_header: "x-cluster-header"
-                              rate_limits:
-                                - actions:
-                                    - request_headers:
-                                        header_name: "foo"
-                                        descriptor_key: "foo"
+
 
 
   clusters:
@@ -75,7 +66,7 @@ static_resources:
               - endpoint:
                   address:
                     socket_address:
-                      address: backend_new
+                      address: backend
                       port_value: 8083
 
  
