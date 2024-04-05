@@ -12,6 +12,10 @@ services:
         limits:
           cpus: "1.0"
           memory: "500M"  # 500 MB
+        reservations:
+          cpus: "1.0"
+          memory: "500M"
+
 
   envoy_second:
     build: ./envoy2
@@ -23,7 +27,10 @@ services:
       resources:
         limits:
           cpus: "1.0"
-          memory: "500M"  # 500 MB
+          memory: "750M"  # 500 MB
+        reservations:
+          cpus: "1.0"
+          memory: "750M"
 
   backend:
     build: ./backend
@@ -35,7 +42,10 @@ services:
       resources:
         limits:
           cpus: "2.0"
-          memory: "1G"  # 1 GB
+          memory: "1G"  
+        reservations:
+          cpus: "2.0"
+          memory: "1G"
   
 
 
@@ -49,15 +59,18 @@ services:
       resources:
         limits:
           cpus: "0.5"
-          memory: "500M"  # 500 MB
+          memory: "250M" 
+        reservations:
+          cpus: "0.5"
+          memory: "250M"
     environment:
       ORG1_CACHE_MAX_SIZE: "3221225472"  # 3GB
       ORG2_CACHE_MAX_SIZE: "1073741824"  # 1GB
       DEFAULT_CACHE_MAX_SIZE: "1048576"   # 1MB
     command: 
-       -s default=malloc,1M
-       -s org1=malloc,3G
-       -s org2=malloc,1G
+       -s default=malloc,100M
+      #  -s org1=malloc,3G
+      #  -s org2=malloc,1G
 
 
 

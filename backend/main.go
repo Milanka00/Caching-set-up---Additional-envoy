@@ -55,11 +55,6 @@ func main() {
 // }
 
 func PublicCacheHandler(w http.ResponseWriter, r *http.Request) {
-	username := r.Header.Get("x-current-user")
-	if username == "" {
-		http.Error(w, "User information missing", http.StatusUnauthorized)
-		return
-	}
 
 	id, err := strconv.Atoi(r.URL.Path[len("/publiccache/"):])
 	if err != nil {
@@ -76,7 +71,7 @@ func PublicCacheHandler(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("X-Custom-Header", "CustomHeaderValue")
 	w.Header().Set("Cache-Control", "public, max-age=600")
 	w.Write(payload)
-	additionalContent := []byte(" cached as public for ID " + strconv.Itoa(id) + " for user " + username)
+	additionalContent := []byte(" cached as public for ID " + strconv.Itoa(id) )
 	w.Write(additionalContent)
 }
 
@@ -113,8 +108,8 @@ func NoCacheHandler(w http.ResponseWriter, r *http.Request) {
 func generatePayloads() {
 	once.Do(func() {
 		payloads = make(map[int][]byte)
-		for i := 1; i <= 50; i++ {
-			payload := make([]byte, 102400)
+		for i := 1; i <= 100; i++ {
+			payload := make([]byte, 1000)
 			for j := range payload {
 				payload[j] = 'x'
 			}

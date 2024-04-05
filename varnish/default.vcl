@@ -56,15 +56,15 @@ sub vcl_backend_response {
             set beresp.uncacheable = true;
             return (deliver);
         }
-        set beresp.storage = storage.org1;
-        set beresp.http.x-storage = "org1";
+        # set beresp.storage = storage.org1;
+        # set beresp.http.x-storage = "org1";
     } elsif (bereq.url ~ "/org2/") {
         if (std.integer(beresp.http.Content-Length, 0) > std.integer(std.getenv("ORG2_CACHE_MAX_SIZE"), 0)) {
             set beresp.uncacheable = true;
             return (deliver);
         }
-        set beresp.storage = storage.org2;
-        set beresp.http.x-storage = "org2";
+        # set beresp.storage = storage.org2;
+        # set beresp.http.x-storage = "org2";
     } else {
           if (std.integer(beresp.http.content-length, 0) > 1048576) {
             set beresp.uncacheable = true;
