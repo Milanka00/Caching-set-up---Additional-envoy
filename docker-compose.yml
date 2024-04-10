@@ -10,10 +10,10 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "1.0"
-          memory: "500M"  # 500 MB
+          cpus: "1"
+          memory: "500M"  
         reservations:
-          cpus: "1.0"
+          cpus: "1"
           memory: "500M"
 
 
@@ -27,7 +27,7 @@ services:
       resources:
         limits:
           cpus: "1.0"
-          memory: "750M"  # 500 MB
+          memory: "750M"  
         reservations:
           cpus: "1.0"
           memory: "750M"
@@ -49,27 +49,22 @@ services:
   
 
 
-  varnish_new:
-    build: ./varnish
-    ports:
-      - "8080:80"
-    networks:
-      - proxy_network
-    deploy:
-      resources:
-        limits:
-          cpus: "0.5"
-          memory: "250M" 
-        reservations:
-          cpus: "0.5"
-          memory: "250M"
-    environment:
-      ORG1_CACHE_MAX_SIZE: "3221225472"  # 3GB
-      ORG2_CACHE_MAX_SIZE: "1073741824"  # 1GB
-      DEFAULT_CACHE_MAX_SIZE: "1048576"   # 1MB
-    command: 
-       -s default=malloc,100M
-      #  -s org1=malloc,3G
+  # varnish_new:
+  #   build: ./varnish
+  #   ports:
+  #     - "8080:80"
+  #   networks:
+  #     - proxy_network
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         cpus: "0.5"
+  #         memory: "50M" 
+  #       reservations:
+  #         cpus: "0.5"
+  #         memory: "50M"
+  #   command: 
+  #      -s default=malloc,40M
       #  -s org2=malloc,1G
 
 
