@@ -19,6 +19,7 @@ sub vcl_recv {
      set req.url = req.http.x-temp-path;
      set req.url = std.querysort(req.url);
 
+
      if (req.method == "PURGE") {
 		# check if the client is allowed to purge content
 		if (!client.ip ~ purge) {
@@ -36,8 +37,15 @@ sub vcl_miss {
         return (fetch);
     
 }
+#set the header for requests by passing the cache, ex: POST,PUT
+sub vcl_pass{
+    if (req.http.x-cluster-header == "varnish_backend_cluster") {
+        set req.http.x-cluster-header = req.http.redirect-backend;  
+    } 
+}
 
 sub vcl_backend_fetch {
+
     if (bereq.http.x-temp-path) {
         set bereq.url = bereq.http.x-temp-path;
         set bereq.url = std.querysort(bereq.url);
