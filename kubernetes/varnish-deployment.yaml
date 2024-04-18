@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: varnish-deployment
+  namespace: my-namespace
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: varnish
+  template:
+    metadata:
+      labels:
+        app: varnish
+
+    spec:
+      containers:
+      - name: varnish-container
+        image: milanka00/caching:varnish-v3
+        ports:
+        - containerPort: 80
