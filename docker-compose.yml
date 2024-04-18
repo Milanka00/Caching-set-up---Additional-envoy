@@ -17,7 +17,7 @@ services:
           memory: "500M"
 
 
-  envoy_second:
+  envoy-second:
     build: ./envoy2
     ports:
       - "9096:9096"

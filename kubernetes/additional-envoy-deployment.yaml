@@ -16,7 +16,7 @@ spec:
 
     spec:
       containers:
-      - name: additional-envoy-container
+      - name: envoy-second
         image: milanka00/caching:envoy-v1
         ports:
         - containerPort: 9096
