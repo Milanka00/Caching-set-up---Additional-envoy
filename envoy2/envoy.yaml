@@ -66,7 +66,7 @@ static_resources:
               - endpoint:
                   address:
                     socket_address:
-                      address: backend
+                      address: backend-service
                       port_value: 8083
 
  

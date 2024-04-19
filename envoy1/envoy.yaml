@@ -53,8 +53,8 @@ static_resources:
               - endpoint:
                   address:
                     socket_address:
-                      address: varnish_new
-                      port_value: 80
+                      address: 172.26.55.5
+                      port_value: 30007
     - name: actual_backend_cluster
       connect_timeout: 0.25s
       type: STRICT_DNS
