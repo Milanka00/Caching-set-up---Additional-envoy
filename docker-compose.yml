@@ -32,20 +32,20 @@ services:
           cpus: "1.0"
           memory: "750M"
 
-  # backend:
-  #   build: ./backend
-  #   ports:
-  #     - "8083:8083"
-  #   networks:
-  #     - proxy_network
-  #   deploy:
-  #     resources:
-  #       limits:
-  #         cpus: "2.0"
-  #         memory: "1G"  
-  #       reservations:
-  #         cpus: "2.0"
-  #         memory: "1G"
+  backend:
+    build: ./backend
+    ports:
+      - "8083:8083"
+    networks:
+      - proxy_network
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: "1G"  
+        reservations:
+          cpus: "2.0"
+          memory: "1G"
   
 
 
@@ -68,22 +68,22 @@ services:
       #  -s org2=malloc,1G
 
 
-  backend:
-    build: ./backend2
-    ports:
-      - "8083:8083"
-    networks:
-      - proxy_network
-    depends_on:
-      - mongo
+  # backend:
+  #   build: ./backend2
+  #   ports:
+  #     - "8083:8083"
+  #   networks:
+  #     - proxy_network
+  #   depends_on:
+  #     - mongo
       
-  mongo:
-    image: mongo
-    restart: always
-    ports:
-      - "27017:27017"
-    networks:
-      - proxy_network
+  # mongo:
+  #   image: mongo
+  #   restart: always
+  #   ports:
+  #     - "27017:27017"
+  #   networks:
+  #     - proxy_network
 
 
 networks:

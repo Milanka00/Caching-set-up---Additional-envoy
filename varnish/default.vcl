@@ -2,13 +2,13 @@ vcl 4.1;
 import std;
 
 backend default {
-    .host = "envoy_second";
+    .host = "envoy-service";
     .port = "9096";
 }
 
 acl purge {
     "localhost";
-    "envoy_second";
+    "envoy-service";
 }
 
 sub vcl_recv {
