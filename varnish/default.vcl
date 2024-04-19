@@ -1,6 +1,8 @@
 vcl 4.1;
 import std;
 
+
+# .host changed for k8
 backend default {
     .host = "envoy-service";
     .port = "9096";
