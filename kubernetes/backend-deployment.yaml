@@ -20,3 +20,10 @@ spec:
         image: milanka00/caching:backend-v1
         ports:
         - containerPort: 8083
+        resources:
+          requests:
+            memory: "1G"  
+            cpu: "2.0"      
+          limits:
+            memory: "1G"  
+            cpu: "2.0"      

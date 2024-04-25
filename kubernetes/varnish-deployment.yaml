@@ -20,3 +20,10 @@ spec:
         image: milanka00/caching:varnish-v2
         ports:
         - containerPort: 80
+        resources:
+          requests:
+            memory: "50M"  
+            cpu: "0.5"      
+          limits:
+            memory: "50M"  
+            cpu: "0.5" 
