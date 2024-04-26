@@ -4,3 +4,5 @@
 
 ![Architecture overview](./Readme/1.png)
 
+// what happens if backend is not working --check the behaviour
+// allocate resources in kubernaetes

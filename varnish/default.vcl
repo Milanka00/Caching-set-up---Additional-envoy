@@ -14,6 +14,15 @@ acl purge {
 }
 
 sub vcl_recv {
+
+    if (req.url == "/varnish-ping") {
+        return(synth(200));
+    }
+        
+    if (req.url == "/varnish-ready") {
+        return(synth(200));
+    }
+    
      # after adding ext_authz filter
      unset req.http.authorization;
 

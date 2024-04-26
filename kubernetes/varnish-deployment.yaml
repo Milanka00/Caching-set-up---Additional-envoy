@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: varnish-container
-        image: milanka00/caching:varnish-v2
+        image: milanka00/caching:varnish-v3
         ports:
         - containerPort: 80
         resources:
