@@ -43,7 +43,7 @@ static_resources:
 
   clusters:
     - name: varnish_backend_cluster
-      connect_timeout: 0.25s
+      connect_timeout: 5s
       type: STRICT_DNS
       lb_policy: round_robin
       load_assignment:
@@ -56,7 +56,7 @@ static_resources:
                       address: varnish_new
                       port_value: 80
     - name: actual_backend_cluster
-      connect_timeout: 0.25s
+      connect_timeout: 5s
       type: STRICT_DNS
       lb_policy: round_robin
       load_assignment:
